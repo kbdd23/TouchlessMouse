@@ -1,12 +1,27 @@
-# TouchlessMouse V1.0
+# TouchlessMouse V1.1
 
 *[Versión en Español](README.es.md)*
 
 Control your computer cursor through gestures and computer vision, without needing to touch the physical mouse.
 
+## What's New in v1.1
+
+**New Features**
+- **Right Click**: Ring finger extended activates right click.
+- **Dynamic Hand Detection**: White circle indicator on wrist when hand is closed.
+- **Single Hand Tracking**: When fully opened, system locks to that hand (eliminates cross-hand detection).
+
+**Improvements**
+- **Visual Feedback Enhancements**: Improved finger indicators (colors, sizes, and timing).
+- **Performance Improvements**: Removed unnecessary processes like lighting processing.
+- **Cursor Stabilizer**: Added a momentary freeze when exiting Precision Mode to prevent cursor jumps.
+- **Anatomical Assist**: Algorithm to infer Ring finger position when partially occluded by the Pinky.
+
+---
+
 ## Requirements
-- **Python 3.10** or higher.
-- A **Webcam** connected.
+- **Python 3.10** or higher
+- A **Webcam** connected
 
 ---
 
@@ -56,34 +71,77 @@ Control your computer cursor through gestures and computer vision, without needi
 
 ## Commands 
 
-1. **Move cursor**: Raise your index finger, it will light up in green and you can drag. (High sensitivity)
+### Hand Selection
+**Lock/Unlock hand**: Your closed fists will show a **white circle** on the wrist. Open the hand you want to use completely - this will lock that hand for tracking. To unlock, simply close the fist again.
 
-2. **Click and Precision Mode**: While raising your index, raise your pinky finger and it will light up in red, lower and raise the pinky quickly and you will click. (Low sensitivity)
+### Cursor Control
+1. **Move cursor**: Raise your index finger (lights up **Green**) to drag the cursor with high sensitivity.
 
-3. **Hold click to drag**: While dragging the cursor, raise your middle finger and it will light up in orange, keep it extended for a moment and it will light up in blue, now the click is held, allowing scrolling.
+2. **Click and Precision Mode**: While raising your index, raise your pinky finger (lights up **Red**). To **click**, quickly retract and extend the pinky again (double-tap gesture).
 
-4. **"Stop!"**: Open your hand completely and the system will stop completely. (All fingers will light up)
+3. **Hold click to drag**: While dragging the cursor, raise your middle finger (lights up **Orange**). Keep it extended for a moment until it turns **Blue** - now click is held, allowing drag & scroll.
 
-**Consideration**: Lighting can influence the interpretation of multiple combinations, it is recommended to configure specific attributes in **config.py**.
+### Right Click (Two Methods)
+- **Method 1**: Raise your ring finger alone (lights up **Orange**), hold briefly until **Blue** for right click.
+- **Method 2 (Ergonomic)**: Raise middle + ring fingers together (4 fingers max)
+
+### Emergency Stop
+**"Stop!"**: Open your hand completely - all fingers light up **Red** and the system pauses.
+
+**Consideration**: Lighting conditions can affect gesture recognition. Adjust parameters in **config.py** for optimal performance.
 
 ---
 
-## Configuration
+## Configuration (`config.py`)
 
-- Camera resolution and FPS limitation
-- Hand detection sensitivity
-- Gesture activation thresholds
-- Cursor sensitivity
-- Debug window configuration
+Customize system behavior by modifying these key parameters:
 
-**Note**: The program modules can be improved and might need their own configurations.
+### Camera Settings
+- `FRAME_WIDTH` / `FRAME_HEIGHT`: Resolution (default 640x480 for better precision)
+- `FPS_TARGET`: Capture speed
+
+### Detection
+- `MIN_DETECTION_CONFIDENCE`: Detection threshold
+- `MODEL_COMPLEXITY`: 0 (Fast) or 1 (Accurate, default)
+
+### Movement
+- `SENSITIVITY`: Cursor speed
+- `SMOOTHING_FACTOR`: Reduces hand shake/jitter
+
+### Gestures
+- `PINKY_TRIGGER_RATIO`: Click sensitivity
+- `DRAG_ACTIVATION_TIME`: Hold time before drag activates
+
+### Debug
+- `SHOW_DEBUG_WINDOW`: Enable/disable visual feedback window
+
+**Note**: Individual modules can be further customized for specific needs.
+
+---
+
+## Changelog
+
+### v1.1 (January 20, 2026)
+- Dynamic dual-hand detection with visual wrist indicators.
+- Single active hand tracking system (prevents interference).
+- Right click: ring finger extended.
+- Alternative right click: middle + ring (ergonomic 4-finger mode).
+- Enhanced visual feedback for hand states.
+- Performance optimizations.
+
+### v1.0 (Initial Release)
+- Basic cursor control via index finger.
+- Click functionality with pinky.
+- Drag-and-hold with middle finger.
+- Emergency stop gesture.
+- Configurable sensitivity and smoothing.
 
 ---
 
 ## License
 
-MIT License - See **LICENSE** for more details.
+MIT License - See **LICENSE** for details.
 
 ## Contributions
 
-Feel free to comment or make pull requests for improvements!
+Feel free to open issues or submit pull requests for improvements!

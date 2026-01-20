@@ -27,6 +27,9 @@ class CursorController:
     def click(self):
         pyautogui.click()
 
+    def right_click(self):
+        pyautogui.rightClick()
+
     def start_drag(self):
         pyautogui.mouseDown()
 
